@@ -15,4 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
-    })->create();
+    
+    })
+    ->withMiddleware(function (Illuminate\Foundation\Configuration\Middleware $middleware) {
+    $middleware->alias([
+        'role' => \App\Http\Middleware\EnsureRole::class,
+    ]);
+})
+    ->create();
